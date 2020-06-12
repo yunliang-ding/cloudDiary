@@ -4,6 +4,9 @@ html,body{
   background: #1e1e1e;
   overflow: hidden;
   font-family: -apple-system,BlinkMacSystemFont,sans-serif !important;
+  --theme-border-color: #1ac7aa !important;
+  --theme-color: #1ac7aa !important;
+  --theme-background-color: #1ac7aa !important;
 }
 div{
   box-sizing: border-box;

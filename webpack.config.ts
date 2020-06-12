@@ -81,6 +81,9 @@ const config = {
     hot: true,
     compress: true,
     contentBase: './www',
+    historyApiFallback:{
+      index:'index.html'
+    },
     proxy: [{
       context: ['/api'],
       target: `http://${getIPAdress()}:8360`,

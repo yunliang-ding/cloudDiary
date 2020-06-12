@@ -10,6 +10,15 @@ class Header extends React.Component<any, any> {
   }
   render() {
     return <div className='app-header'>
+      <div className='app-header-left'>
+        <i class='diaryfont diary-todo-list-o'></i>
+        <span>Cloud Diary</span>
+      </div>
+      <div className='app-header-right'>
+        <i class='diaryfont diary-Userpersonavtar'></i>
+        <span>Yun Liang</span>
+        <i class='diaryfont diary-jia'></i>
+      </div>
     </div>
   }
 }
