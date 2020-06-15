@@ -33,7 +33,7 @@ class Content extends React.Component<any, any> {
         </div>
         <div className='app-content-box-body'>
           {
-            this.props.UI.dataList.map((item, index) => {
+            this.props.UI.taskList.map((item, index) => {
               return <div className='app-content-box-item' key={item.key}>
                 <div className='app-content-box-item-sort'>
                   {index+1}
@@ -57,7 +57,12 @@ class Content extends React.Component<any, any> {
                   />
                 </div>
                 <div className='app-content-box-item-operation'>
-                  <i className='diaryfont diary-bianji'></i>
+                  <i className='diaryfont diary-bianji' onClick={
+                    () => {
+                      this.props.UI.setVisible(true)
+                      this.props.UI.setTask(item)
+                    }
+                  }></i>
                   <i className='diaryfont diary-remove'></i>
                 </div>
               </div>
