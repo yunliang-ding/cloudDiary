@@ -12,7 +12,7 @@
     display:flex;
     align-items: center;
     justify-content: flex-start;
-    .diary-todo-list-o{
+    .diary-task-line{
       font-size: 32px;
       color: #fff;
       cursor: pointer;
@@ -44,6 +44,25 @@
     .diary-Userpersonavtar{
       font-size:20px;
       color:#fff;
+    }
+  }
+}
+.app-drawer-box{
+  .app-drawer-box-item{
+    display: flex;
+    align-items: center;
+    margin-bottom:12px;
+    .app-drawer-box-item-left{
+      width:100px;
+    }
+    .app-drawer-box-item-right{
+      width:calc(100% - 100px);
+      textarea{
+        min-height:50px;
+      }
+      .yui-select-dark{
+        margin-bottom: 0 !important;
+      }
     }
   }
 }

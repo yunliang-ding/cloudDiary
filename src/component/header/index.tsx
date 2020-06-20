@@ -1,6 +1,7 @@
 import * as React from "react"
 import { observer, inject } from 'mobx-react'
 import { Drawer, Button } from 'react-ryui'
+import { TaskDrawer } from './taskDrawer'
 import './index.less'
 @inject('UI')
 @observer
@@ -15,19 +16,17 @@ class Header extends React.Component<any, any> {
     mask: true,
     closable: true
   }
-  renderView = () => {
-  
-  }
   render() {
     const {
       visible,
       setVisible,
-      task
+      task,
+      addOrUpdateTask
     } = this.props.UI
     return <div className='app-header'>
       <div className='app-header-left'>
-        <i className='diaryfont diary-todo-list-o'></i>
-        <span>Cloud Diary</span>
+        <i className='diaryfont diary-task-line'></i>
+        <span>Cloud Record</span>
       </div>
       <div className='app-header-right'>
         <i className='diaryfont diary-Userpersonavtar'></i>
@@ -37,9 +36,11 @@ class Header extends React.Component<any, any> {
             setVisible(true)
             this.props.UI.setTask({
               id: null,
-              time: '',
-              content: '',
-              status: 0
+              name: '',
+              status: 0,
+              level:3,
+              start_time: '',
+              end_time: ''
             })
           }
         }></i>
@@ -58,6 +59,7 @@ class Header extends React.Component<any, any> {
             onClick={
               () => {
                 setVisible(false)
+                addOrUpdateTask()
               }
             }
           />,
@@ -73,9 +75,9 @@ class Header extends React.Component<any, any> {
           />
         ]}
         visible={visible}
-        content={this.renderView()}
+        content={<TaskDrawer />}
         style={{
-          width: 400,
+          width: 420,
           height: 'calc(100% - 40px)'
         }}
         onClose={
