@@ -75,7 +75,6 @@ class TaskDrawer extends React.Component<any, any> {
             dark
             value={start_time}
             placeholder='请选择'
-            format='YYYY/MM/DD'
             onChange={
               (e) => {
                 setTaskByKey('start_time', e)
@@ -92,7 +91,6 @@ class TaskDrawer extends React.Component<any, any> {
           <DatePicker
             dark
             value={end_time}
-            format='YYYY/MM/DD'
             placeholder='请选择'
             onChange={
               (e) => {

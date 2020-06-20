@@ -2,7 +2,9 @@
 /**
  * config
  */
-export default {
+
+exports.__esModule = true;
+exports.default = {
   //key: value
   port: 8091
 };

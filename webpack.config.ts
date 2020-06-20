@@ -86,7 +86,7 @@ const config = {
     },
     proxy: [{
       context: ['/api'],
-      target: `http://${getIPAdress()}:8360`,
+      target: `http://${getIPAdress()}:8091`,
       pathRewrite: { '^/api': '' },
       changeOrigin: true,
       secure: true

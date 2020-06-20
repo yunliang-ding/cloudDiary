@@ -4,6 +4,7 @@ node/node_modules/
 out/log
 out/public/app.js
 out/node_modules
+out/backend/node_modules
 
 .vscode/
 .DS_Store

@@ -3,8 +3,8 @@ const express = require('express')
 const proxy = require('http-proxy-middleware')
 const app = express()
 const prefix = ''
-const proxyUrl = 'http://localhost:8090'
-const port = 9000
+const proxyUrl = 'http://localhost:8091'
+const port = 8004
 // 开启静态资源访问
 app.use(express.static('./public')) 
 // 接口的代理1
