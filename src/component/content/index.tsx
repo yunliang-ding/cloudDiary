@@ -19,7 +19,9 @@ class Content extends React.Component<any, any> {
         current,
         total
       },
-      setPagination
+      setPagination,
+      setTaskByKey,
+      addOrUpdateTask
     } = this.props.UI
     return <div className='app-content'>
       <div className='app-content-box'>
@@ -74,7 +76,7 @@ class Content extends React.Component<any, any> {
                     unCheckedNode={<span>No</span>}
                     onChange={
                       (e) => {
-                        console.log(e)
+                        addOrUpdateTask(Object.assign({}, item, { status: e ? 1 : 0 }))
                       }
                     }
                   />

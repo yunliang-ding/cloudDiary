@@ -38,17 +38,18 @@ class UI {
   @action setTask = (task) => {
     this.task = task
   }
-  @action addOrUpdateTask = async () => {
-    const { code, insertId } = await post('/api/task/saveorupdate', this.task, {})
+  @action addOrUpdateTask = async (taskEntity) => {
+    taskEntity = taskEntity || this.task
+    const { code, insertId } = await post('/api/task/saveorupdate', taskEntity, {})
     if (code === 200) {
       runInAction(() => {
-        if (this.task.id === null) { // new
-          this.task.id = insertId
-          this.taskList.unshift(this.task)
+        if (taskEntity.id === null) { // new
+          taskEntity.id = insertId
+          this.taskList.unshift(taskEntity)
           this.pagination.total += 1
         } else { // update
           this.taskList = this.taskList.map(task => {
-            return task.id === this.task.id ? this.task : task
+            return task.id === taskEntity.id ? taskEntity : task
           })
         }
       })
