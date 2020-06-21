@@ -118,7 +118,7 @@ var _class = function (_Base) {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return this.model('task').page(this.get('current'), this.get('pageSize')).order({ id: 'desc' }).countSelect();
+              return this.model('task').where({ user_name: this.get('user_name') }).page(this.get('current'), this.get('pageSize')).order({ id: 'desc' }).countSelect();
 
             case 3:
               data = _context2.sent;

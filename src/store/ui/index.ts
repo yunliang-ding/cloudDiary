@@ -8,13 +8,16 @@ const message = new Message({
 class UI {
   @observable loading = false
   @observable visible = false
+  @observable login = localStorage.getItem('user_name') !== null
+  @observable userName = localStorage.getItem('user_name')
   @observable task = {
     id: null,
     name: '',
     status: 0,
     start_time: '',
     end_time: '',
-    level: 1
+    level: 1,
+    remake: ''
   }
   @observable taskList = []
   @observable pagination = {
@@ -84,6 +87,12 @@ class UI {
         this.pagination.total -= 1
       })
     }
+  }
+  @action setUserName = (userName) => {
+    this.userName = userName
+  }
+  @action setLogin = (login) => {
+    this.login = login
   }
 }
 const ui = new UI()

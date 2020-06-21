@@ -11,12 +11,13 @@ class TaskDrawer extends React.Component<any, any> {
   }
   render() {
     const {
-      task:{
+      task: {
         name,
-        status,
         start_time,
         end_time,
-        level
+        level,
+        remake,
+        id
       },
       setTaskByKey
     } = this.props.UI
@@ -33,10 +34,10 @@ class TaskDrawer extends React.Component<any, any> {
             dataList={[{
               label: '优先',
               value: 3
-            },{
+            }, {
               label: '一般',
               value: 2
-            },{
+            }, {
               label: '暂缓',
               value: 1
             }]}
@@ -54,7 +55,7 @@ class TaskDrawer extends React.Component<any, any> {
           任务详情
         </div>
         <div className='app-drawer-box-item-right'>
-          <Input 
+          <Input
             type='textArea'
             dark
             value={name}
@@ -100,6 +101,26 @@ class TaskDrawer extends React.Component<any, any> {
           />
         </div>
       </div>
+      {
+        id !== null && <div className='app-drawer-box-item'>
+          <div className='app-drawer-box-item-left'>
+            任务评论
+          </div>
+          <div className='app-drawer-box-item-right'>
+            <Input
+              type='textArea'
+              dark
+              value={remake}
+              onChange={
+                (e) => {
+                  setTaskByKey('remake', e.target.value)
+                }
+              }
+            />
+          </div>
+        </div>
+      }
+
     </div>
   }
 }

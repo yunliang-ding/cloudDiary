@@ -4,6 +4,7 @@ import store from '../store/index'
 const get = async (url, params) => {
   store.UI.setLoading(true)
   let response = null
+  params = Object.assign({}, params, {user_name: localStorage.getItem('user_name')})
   let options = {
     params,
     timeout: 60000
@@ -25,6 +26,7 @@ const get = async (url, params) => {
 const post = async (url, data, headers) => {
   store.UI.setLoading(true)
   data = data || {}
+  data = Object.assign({}, data, {user_name: localStorage.getItem('user_name')})
   let response = null
   try {
     /*

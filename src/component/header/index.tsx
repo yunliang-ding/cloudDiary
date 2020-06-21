@@ -1,6 +1,6 @@
 import * as React from "react"
 import { observer, inject } from 'mobx-react'
-import { Drawer, Button } from 'react-ryui'
+import { Drawer, Button, Tooltip } from 'react-ryui'
 import { TaskDrawer } from './taskDrawer'
 import './index.less'
 @inject('UI')
@@ -21,7 +21,9 @@ class Header extends React.Component<any, any> {
       visible,
       setVisible,
       task,
-      addOrUpdateTask
+      addOrUpdateTask,
+      setLogin,
+      setUserName
     } = this.props.UI
     return <div className='app-header'>
       <div className='app-header-left'>
@@ -30,7 +32,20 @@ class Header extends React.Component<any, any> {
       </div>
       <div className='app-header-right'>
         <i className='diaryfont diary-Userpersonavtar'></i>
-        <span>Yun Liang</span>
+        <span>{this.props.UI.userName}</span>
+        <Tooltip
+          dark
+          title={<span>切换用户</span>}
+          placement='bottom'
+        >
+          <i className='diaryfont diary-tuichu' style={{fontSize: 18, margin: '0 10px'}} onClick={
+            () => {
+              setLogin(false)
+              setUserName(null)
+              localStorage.removeItem('user_name')
+            }
+          }></i>
+        </Tooltip>
         <i className='diaryfont diary-jia' onClick={
           () => {
             setVisible(true)

@@ -33,7 +33,7 @@ export default class extends Base {
   }
   async listAction() {
     try {
-      let data = await this.model('task').page(this.get('current'), this.get('pageSize')).order({id: 'desc'}).countSelect()
+      let data = await this.model('task').where({user_name: this.get('user_name')}).page(this.get('current'), this.get('pageSize')).order({id: 'desc'}).countSelect()
       this.json({
         code: 200,
         data

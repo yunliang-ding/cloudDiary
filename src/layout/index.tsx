@@ -1,6 +1,7 @@
-import * as React from "react"
+import * as React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Header, Content, Footer} from 'component/index'
+import { Header, Content, Footer } from 'component/index'
+import { Button, Input } from 'react-ryui'
 import './index.less'
 @inject('UI')
 @observer
@@ -10,11 +11,40 @@ class Layout extends React.Component<any, any> {
     super(props)
   }
   render() {
-    return <div className='app-layout'>
+    const {
+      userName,
+      login,
+      setUserName,
+      setLogin
+    } = this.props.UI
+    return login ? <div className='app-layout'>
       <Header />
       <Content />
       <Footer />
-    </div>
+    </div> : <div className='app-layout'>
+        <div className='app-layout-login'>
+          <div className='app-layout-login-box'>
+            <Input
+              dark
+              style={{width: 300}}
+              value={userName}
+              placeholder='输入用户名'
+              onChange={
+                (e) => {
+                  setUserName(e.target.value)
+                }
+              }
+            />
+            <Button label='确认' type='primary' onClick={
+              () => {
+                localStorage.setItem('user_name', this.props.UI.userName)
+                setLogin(true)
+              }
+            }
+            />
+          </div>
+        </div>
+      </div>
   }
 }
 export { Layout }
