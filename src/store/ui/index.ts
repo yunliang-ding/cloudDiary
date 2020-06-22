@@ -94,6 +94,9 @@ class UI {
   @action setLogin = (login) => {
     this.login = login
   }
+  @action clearTaskList = () => {
+    this.taskList = []
+  }
 }
 const ui = new UI()
 export {

@@ -23,7 +23,8 @@ class Header extends React.Component<any, any> {
       task,
       addOrUpdateTask,
       setLogin,
-      setUserName
+      setUserName,
+      clearTaskList
     } = this.props.UI
     return <div className='app-header'>
       <div className='app-header-left'>
@@ -41,6 +42,7 @@ class Header extends React.Component<any, any> {
           <i className='diaryfont diary-tuichu' style={{fontSize: 18, margin: '0 10px'}} onClick={
             () => {
               setLogin(false)
+              clearTaskList()
               setUserName(null)
               localStorage.removeItem('user_name')
             }
