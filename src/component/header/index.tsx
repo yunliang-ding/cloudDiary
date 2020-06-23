@@ -39,7 +39,7 @@ class Header extends React.Component<any, any> {
           title={<span>切换用户</span>}
           placement='bottom'
         >
-          <i className='diaryfont diary-tuichu' style={{fontSize: 18, margin: '0 10px'}} onClick={
+          <i className='diaryfont diary-tuichu' style={{ fontSize: 18, margin: '0 10px' }} onClick={
             () => {
               setLogin(false)
               clearTaskList()
@@ -48,19 +48,25 @@ class Header extends React.Component<any, any> {
             }
           }></i>
         </Tooltip>
-        <i className='diaryfont diary-jia' onClick={
-          () => {
-            setVisible(true)
-            this.props.UI.setTask({
-              id: null,
-              name: '',
-              status: 0,
-              level:3,
-              start_time: '',
-              end_time: ''
-            })
-          }
-        }></i>
+        <Tooltip
+          dark
+          title={<span>添加任务</span>}
+          placement='bottom'
+        >
+          <i className='diaryfont diary-jia' onClick={
+            () => {
+              setVisible(true)
+              this.props.UI.setTask({
+                id: null,
+                name: '',
+                status: 0,
+                level: 3,
+                start_time: '',
+                end_time: ''
+              })
+            }
+          }></i>
+        </Tooltip>
       </div>
       <Drawer
         title={task.id ? '编辑任务' : '新增任务'}
@@ -95,7 +101,7 @@ class Header extends React.Component<any, any> {
         content={<TaskDrawer />}
         style={{
           width: 420,
-          height: 'calc(100% - 40px)'
+          height: 'calc(100% - 50px)'
         }}
         onClose={
           () => {

@@ -111,7 +111,7 @@ var _class = function (_Base) {
 
   _class.prototype.listAction = function () {
     var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
-      var where, data;
+      var where, order, data;
       return _regenerator2.default.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -121,27 +121,32 @@ var _class = function (_Base) {
                 user_name: this.get('user_name')
               };
 
-              if (this.get('status') !== -1) {
-                where[status] = this.get('status');
+              if (this.get('status') !== '-1') {
+                where.status = this.get('status');
               }
-              if (this.get('level') !== -1) {
-                where[level] = this.get('level');
+              if (this.get('level') !== '-1') {
+                where.level = this.get('level');
               }
-              _context2.next = 6;
-              return this.model('task').where(where).page(this.get('current'), this.get('pageSize')).order({ id: 'desc' }).countSelect();
+              order = { id: 'desc' };
 
-            case 6:
+              if (this.get('order')) {
+                order = JSON.parse(this.get('order'));
+              }
+              _context2.next = 8;
+              return this.model('task').where(where).page(this.get('current'), this.get('pageSize')).order(order).countSelect();
+
+            case 8:
               data = _context2.sent;
 
               this.json({
                 code: 200,
                 data: data
               });
-              _context2.next = 13;
+              _context2.next = 15;
               break;
 
-            case 10:
-              _context2.prev = 10;
+            case 12:
+              _context2.prev = 12;
               _context2.t0 = _context2['catch'](0);
 
               this.json({
@@ -149,12 +154,12 @@ var _class = function (_Base) {
                 error: _context2.t0
               });
 
-            case 13:
+            case 15:
             case 'end':
               return _context2.stop();
           }
         }
-      }, _callee2, this, [[0, 10]]);
+      }, _callee2, this, [[0, 12]]);
     }));
 
     function listAction() {
