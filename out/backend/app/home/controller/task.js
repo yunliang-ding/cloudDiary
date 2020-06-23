@@ -111,27 +111,37 @@ var _class = function (_Base) {
 
   _class.prototype.listAction = function () {
     var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
-      var data;
+      var where, data;
       return _regenerator2.default.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              _context2.next = 3;
-              return this.model('task').where({ user_name: this.get('user_name') }).page(this.get('current'), this.get('pageSize')).order({ id: 'desc' }).countSelect();
+              where = {
+                user_name: this.get('user_name')
+              };
 
-            case 3:
+              if (this.get('status') !== -1) {
+                where[status] = this.get('status');
+              }
+              if (this.get('level') !== -1) {
+                where[level] = this.get('level');
+              }
+              _context2.next = 6;
+              return this.model('task').where(where).page(this.get('current'), this.get('pageSize')).order({ id: 'desc' }).countSelect();
+
+            case 6:
               data = _context2.sent;
 
               this.json({
                 code: 200,
                 data: data
               });
-              _context2.next = 10;
+              _context2.next = 13;
               break;
 
-            case 7:
-              _context2.prev = 7;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2['catch'](0);
 
               this.json({
@@ -139,12 +149,12 @@ var _class = function (_Base) {
                 error: _context2.t0
               });
 
-            case 10:
+            case 13:
             case 'end':
               return _context2.stop();
           }
         }
-      }, _callee2, this, [[0, 7]]);
+      }, _callee2, this, [[0, 10]]);
     }));
 
     function listAction() {

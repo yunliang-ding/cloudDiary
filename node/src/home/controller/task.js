@@ -33,7 +33,20 @@ export default class extends Base {
   }
   async listAction() {
     try {
-      let data = await this.model('task').where({user_name: this.get('user_name')}).page(this.get('current'), this.get('pageSize')).order({id: 'desc'}).countSelect()
+      let where = {
+        user_name: this.get('user_name'),
+      }
+      if (this.get('status') !== '-1') {
+        where.status = this.get('status')
+      }
+      if (this.get('level') !== '-1') {
+        where.level = this.get('level')
+      }
+      let order = { id: 'desc' }
+      if (this.get('order')) {
+        order = JSON.parse(this.get('order'))
+      }
+      let data = await this.model('task').where(where).page(this.get('current'), this.get('pageSize')).order(order).countSelect()
       this.json({
         code: 200,
         data
@@ -61,7 +74,7 @@ export default class extends Base {
   }
   async deleteAction() {
     try {
-      let affectedRows = await this.model('task').where({id: this.post('id')}).delete()
+      let affectedRows = await this.model('task').where({ id: this.post('id') }).delete()
       this.json({
         code: 200,
         affectedRows

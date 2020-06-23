@@ -18,7 +18,7 @@
     "react-router": "^3.0.2",
     "qs": "6.8.0",
     "axios": "0.17.1",
-    "react-ryui":"1.0.7"
+    "react-ryui":"1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",

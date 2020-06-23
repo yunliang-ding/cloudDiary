@@ -25,6 +25,23 @@ class UI {
     current: 1,
     total: 0
   }
+  @observable searchForm = {
+    level: -1,
+    status: -1
+  }
+  @observable orderForm = {
+    order: {
+      id: 'desc'
+    }
+  }
+  @action setOrderForm = (order) => {
+    this.orderForm.order = order
+    this.getTaskList()
+  }
+  @action setSearchFormByKey = (key: string, value: number): void => {
+    this.searchForm[key] = value
+    this.getTaskList()
+  }
   @action setPagination = (key: string, value: number): void => {
     this.pagination[key] = value
     this.getTaskList()
@@ -50,6 +67,7 @@ class UI {
           taskEntity.id = insertId
           this.taskList.unshift(taskEntity)
           this.pagination.total += 1
+          this.taskList = [...this.taskList] // render
         } else { // update
           this.taskList = this.taskList.map(task => {
             return task.id === taskEntity.id ? taskEntity : task
@@ -62,7 +80,7 @@ class UI {
     }
   }
   @action getTaskList = async () => {
-    const { code, data } = await get('/api/task/list', this.pagination)
+    const { code, data } = await get('/api/task/list', Object.assign({}, this.orderForm, this.searchForm, this.pagination))
     if (code !== 200) {
       message.error('查询任务列表异常!')
     } else {
