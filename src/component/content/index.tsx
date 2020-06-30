@@ -33,8 +33,9 @@ class Content extends React.Component<any, any> {
       label: '序号',
       dataIndex: 'id',
       width: '10%',
+      sorter: true,
       render: (id) => {
-        return <span>{id}</span>
+        return <span>#{id}</span>
       }
     }, {
       label: <Select
@@ -79,9 +80,7 @@ class Content extends React.Component<any, any> {
     }, {
       label: '计划开始时间',
       width: '15%',
-      sorter: (a, b) => {
-        return a.level > b.level ? 1 : -1
-      },
+      sorter: true,
       dataIndex: 'start_time',
       render: (start_time) => {
         return <span>{new Date(start_time).toLocaleDateString()}</span>
@@ -93,9 +92,7 @@ class Content extends React.Component<any, any> {
     }, {
       label: '计划完成时间',
       width: '15%',
-      sorter: (a, b) => {
-        return a.level > b.level ? 1 : -1
-      },
+      sorter: true,
       dataIndex: 'end_time',
       render: (end_time) => {
         return <span>{new Date(end_time).toLocaleDateString()}</span>
